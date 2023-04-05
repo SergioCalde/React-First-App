@@ -20,5 +20,7 @@ a {
 }
 
 .App-logo{
-  width: 60px;
+  object-fit: contain;
+  height: 200px;
+  /* width: 60px; */
 }

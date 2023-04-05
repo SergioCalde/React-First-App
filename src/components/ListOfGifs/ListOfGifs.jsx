@@ -1,37 +1,19 @@
-import { useEffect, useState } from 'react';
-import getGifs from '../../services/getGifs';
-import spinner from '../Spinner/index'
 import Gif from '../Gif/Gif'
+import './styles.css'
 
-export default function ListOfGifs({ params }) {
+export default function ListOfGifs({ gifs }) {
 
-  const { keyword } = params
-  const [loading, setLoading] = useState(false)
-
-  const [ gifs, setGifs ] = useState([])
-
-  useEffect(() => {
-    setLoading(true)
-    getGifs({ keyword })
-      .then(gifs => {
-        setGifs(gifs)
-        setLoading(false)
-      })
-  }, [keyword])
-
-    if (loading) return spinner
-
-  return <>
+  return <div className='ListOfGifs'>
     {
-      gifs.map(({id, title, url}) => 
-        <Gif  
+      gifs.map(({id, title, url}) =>
+        <Gif
+          id={id}
           key={id}
-          title={title} 
-          url={url} 
-          id={id} 
+          title={title}
+          url={url}
         />
       )
     }
-  </>
+  </div>
   
 }
