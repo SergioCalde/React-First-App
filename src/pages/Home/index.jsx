@@ -1,10 +1,29 @@
-import { Link } from "wouter"
+import { useState } from "react"
+import { Link, useLocation } from "wouter"
 
 const POPULAR_GIFS = ["Luffy", "Tanjiro", "Pokemon", "HunterXHunter"]
 
 export default function Home() {
+  const [ keyword , setKeyword ] = useState('');
+
+  const [ path, pushLocation ] = useLocation();
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    //navegar a otra ruta
+    pushLocation(`/search/${keyword}`)
+  }
+
+  const handleChange = evt => {
+    setKeyword(evt.target.value);
+  }
+
   return (
     <>
+      <form onSubmit={handleSubmit}>
+        <input onChange={handleChange} type="text" value={keyword} placeholder="Search a gif here..." />
+        <button>Buscar</button>
+      </form>
       <h3 className="App-title">Los gifs más populares</h3>
       <ul>
       {POPULAR_GIFS.map((popularGif) => (
