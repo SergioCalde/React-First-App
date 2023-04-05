@@ -1,0 +1,24 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.read-the-docs {
+  color: #888;
+  padding: 16px;
+}
+
+button{
+  font-size: 48px;
+}
+
+a {
+  color: #09f;
+  font-size: 18px;
+}
+
+.App-logo{
+  width: 60px;
+}
