@@ -35,11 +35,16 @@ export default function Home() {
           <h3 className="App-title">Última búsqueda</h3>
           <ListOfGifs gifs={gifs} />
         </div>
+        <div className="App-category">
         <Category
-          className="App-category"
           name="Categorias populares"
           options={POPULAR_GIFS}
         />
+        <Category
+          name="Peliculas"
+          options={['Avengers','John Wick', 'Fast and Furious']}
+        />
+        </div>
       </div>
     </>
   )

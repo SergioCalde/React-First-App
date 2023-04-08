@@ -52,7 +52,7 @@ a {
 
 .App-main {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: flex-start;
 }
 
