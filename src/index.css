@@ -56,6 +56,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+form {
+  display: flex;
+  margin: 0 auto 30px;
+  justify-content: center;
+}
+
 input[type=text]{
   border-radius: 0 10px 10px 0;
   font-size: 16px;
