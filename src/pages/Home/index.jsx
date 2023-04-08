@@ -1,16 +1,18 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useLocation } from "wouter"
-import { useGifs } from "../../hooks/useGifs";
+import getGifs from "../../services/getGifs";
 import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
+import Category from "../../components/Category";
+import { useGifs } from "../../hooks/useGifs";
+
 
 const POPULAR_GIFS = ["Luffy", "Tanjiro", "Pokemon", "HunterXHunter"]
 
 export default function Home() {
   const [ keyword , setKeyword ] = useState('');
-
   const [ path, pushLocation ] = useLocation();
-
   const { loading, gifs} = useGifs();
+
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -28,16 +30,9 @@ export default function Home() {
         <input onChange={handleChange} type="text" value={keyword} placeholder="Search a gif here..." />
         <button>Buscar</button>
       </form>
-      <h3>Última búsqueda</h3>
+      <h3 className="App-title">Última búsqueda</h3>
       <ListOfGifs gifs={gifs}/>
-      <h3 className="App-title">Los gifs más populares</h3>
-      <ul>
-      {POPULAR_GIFS.map((popularGif) => (
-        <li key={popularGif}>
-          <Link to={`/search/${popularGif}`}>Gifs de {popularGif}</Link>
-        </li>
-      ))}
-      </ul>
+      <Category name="Categorias populares" options={POPULAR_GIFS}/>
     </>
   )
 }
