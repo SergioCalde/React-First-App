@@ -21,7 +21,6 @@ function App() {
           <img src={"/logo.png"} alt="Giffy logo" />
           </figure>
         </Link>
-        <h1>App</h1>
         <GifContextProvider>
           <Route 
             component={Home} 
