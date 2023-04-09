@@ -17,9 +17,10 @@ function App() {
     <div className="App">
       <section className='App-content'>  
         <Link to="/">
-          <img className='App-logo' src={"/logo.png"} alt="logo" />
+          <figure className='App-logo'>
+          <img src={"/logo.png"} alt="Giffy logo" />
+          </figure>
         </Link>
-        <h1>App</h1>
         <GifContextProvider>
           <Route 
             component={Home} 
