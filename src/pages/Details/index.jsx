@@ -1,8 +1,8 @@
 // import { useContext } from "react"
 // import StaticContext from '../../context/StaticContext'
 // import GifsContext from '../../context/GifsContext'
-import Gif from "../../components/Gif/Gif";
-import useGlobalGifs from "../../hooks/useGlobalGifs";
+import Gif from "@/components/Gif/Gif";
+import useGlobalGifs from "@/hooks/useGlobalGifs";
 
 export default function Detail ({ params }) {
   // const staticConfig = useContext(StaticContext);
@@ -17,8 +17,10 @@ export default function Detail ({ params }) {
 
   // console.log(gif)
 
+  // const title = gif.title.replaceAll('%20', ' ')
+
   return <>
-  <h3 className="App-title">{gif.title}</h3>
+  <h3 className="App-title">{decodeURI(gif.title)}</h3>
   <Gif { ...gif } />
   </>
   

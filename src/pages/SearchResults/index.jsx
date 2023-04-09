@@ -1,6 +1,6 @@
-import Spinner from '../../components/Spinner'
-import ListOfGifs from '../../components/ListOfGifs/ListOfGifs'
-import { useGifs } from '../../hooks/useGifs'
+import Spinner from '@/components/Spinner'
+import ListOfGifs from '@/components/ListOfGifs/ListOfGifs'
+import { useGifs } from '@/hooks/useGifs'
 
 function SearchResults ({ params }) {
   const { keyword } = params
@@ -17,11 +17,13 @@ function SearchResults ({ params }) {
   //     })
   // }, [keyword])
 
+  // const title = keyword.replaceAll('%20', ' ')
+
   return <>
     {loading
       ? <Spinner />
       : <>
-      <h3 className='App-title'>{keyword}</h3>
+      <h3 className='App-title'>{decodeURI(keyword)}</h3>
       <ListOfGifs gifs={gifs} />
       </>
     }

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "wouter"
-import getGifs from "../../services/getGifs";
-import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
-import Category from "../../components/Category";
-import { useGifs } from "../../hooks/useGifs";
+import ListOfGifs from "@/components/ListOfGifs/ListOfGifs";
+import Category from "@/components/Category";
+import { useGifs } from "@/hooks/useGifs";
+import TrendingSearches from "@/components/TrendingSearches";
 
 
 const POPULAR_GIFS = ["Luffy", "Tanjiro", "Pokemon", "HunterXHunter"]
@@ -40,10 +40,7 @@ export default function Home() {
           name="Categorias populares"
           options={POPULAR_GIFS}
         />
-        <Category
-          name="Peliculas"
-          options={['Avengers','John Wick', 'Fast and Furious']}
-        />
+        <TrendingSearches/>
         </div>
       </div>
     </>
