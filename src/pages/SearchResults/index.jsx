@@ -4,7 +4,7 @@ import { useGifs } from '@/hooks/useGifs'
 
 function SearchResults ({ params }) {
   const { keyword } = params
-  const { loading,gifs } = useGifs({ keyword })
+  const { loading, gifs, setPage } = useGifs({ keyword })
   // const [loading, setLoading] = useState(false)
   // const [gifs, setGifs] = useState([])
 
@@ -19,6 +19,10 @@ function SearchResults ({ params }) {
 
   // const title = keyword.replaceAll('%20', ' ')
 
+  const handleNextPage = () => {
+    setPage(prevPage => prevPage + 1)
+  }
+
   return <>
     {loading
       ? <Spinner />
@@ -27,6 +31,8 @@ function SearchResults ({ params }) {
       <ListOfGifs gifs={gifs} />
       </>
     }
+    <br />
+    <button onClick={handleNextPage}>Get next page</button>
   </>
 }
 
