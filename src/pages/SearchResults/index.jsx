@@ -1,38 +1,39 @@
 import Spinner from '@/components/Spinner'
 import ListOfGifs from '@/components/ListOfGifs/ListOfGifs'
 import { useGifs } from '@/hooks/useGifs'
+import useNearScreen from '@/hooks/useNearScreen'
+import { useCallback, useRef, useEffect } from 'react'
+import debounce from 'just-debounce-it'
 
 function SearchResults ({ params }) {
   const { keyword } = params
   const { loading, gifs, setPage } = useGifs({ keyword })
-  // const [loading, setLoading] = useState(false)
-  // const [gifs, setGifs] = useState([])
+  const externalRef = useRef()
+  const { isNearScreen } = useNearScreen({ 
+    externalRef: loading ? null : externalRef,
+    once: false
+  })
 
-  // useEffect(function () {
-  //   setLoading(true)
-  //   getGifs({ keyword })
-  //     .then(gifs => {
-  //       setGifs(gifs)
-  //       setLoading(false)
-  //     })
-  // }, [keyword])
+  const debounceHandleNextPage = useCallback( debounce(
+    () => setPage(prevPage => prevPage + 1), 1000
+  ), [])
 
-  // const title = keyword.replaceAll('%20', ' ')
-
-  const handleNextPage = () => {
-    setPage(prevPage => prevPage + 1)
-  }
+  useEffect(function() {
+    // console.log(isNearScreen)
+    if(isNearScreen) debounceHandleNextPage()
+  }, [debounceHandleNextPage, isNearScreen])
 
   return <>
     {loading
       ? <Spinner />
       : <>
-      <h3 className='App-title'>{decodeURI(keyword)}</h3>
-      <ListOfGifs gifs={gifs} />
+        <h3 className='App-title'>
+          {decodeURI(keyword)}
+        </h3>
+        <ListOfGifs gifs={gifs} />
+        <div id="visor" ref={externalRef}></div>
       </>
     }
-    <br />
-    <button onClick={handleNextPage}>Get next page</button>
   </>
 }
 
