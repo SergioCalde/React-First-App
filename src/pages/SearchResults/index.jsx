@@ -3,7 +3,7 @@ import ListOfGifs from '@/components/ListOfGifs/ListOfGifs'
 import { useGifs } from '@/hooks/useGifs'
 import useNearScreen from '@/hooks/useNearScreen'
 import { useCallback, useRef, useEffect } from 'react'
-import debounce from 'just-debounce-it'
+import debounce from 'just-debounce-it' //https://github.com/angus-c/just#just-debounce-it
 
 function SearchResults ({ params }) {
   const { keyword } = params
